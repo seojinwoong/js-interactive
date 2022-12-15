@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../test.css">
+    <script>
+        let imgs;
+
+        let x = y = mx = my = 0;
+        
+        window.onload = function() {
+            imgs = document.querySelectorAll('.img_wrap img');
+            
+            document.querySelector('.img_wrap').addEventListener('mousemove', mouseFunc, false);
+
+            function mouseFunc(e) {
+                x = (e.clientX - window.innerWidth / 2);
+                y = (e.clientY - window.innerHeight / 2);
+            }
+            loop();
+        }
+
+        function loop() {
+            mx += (x - mx);
+            my += (y - my);
+            
+            imgs.forEach(function(img){
+                if (img.dataset.mousedirection === "forward") {
+                    img.style.transform = `translate(${mx/90}px, ${my/90}px)`;        
+                } else {
+                    img.style.transform = `translate(${-mx/90}px, ${-my/90}px)`;        
+                }
+            });
+
+            window.requestAnimationFrame(loop);
+        }
+    </script>
+</head>
+<body>
+    <div class="img_wrap">
+        <img class="imgs1" data-mousedirection="forward" src="./imgs/1.png" alt="">
+        <img class="imgs2" data-mousedirection="reverse" src="./imgs/2.jpg" alt="">
+        <img class="imgs3" data-mousedirection="forward" src="./imgs/3.png" alt="">
+        <img class="imgs4" data-mousedirection="forward" src="./imgs/4.png" alt="">
+        <img class="imgs5" data-mousedirection="reverse" src="./imgs/5.png" alt="">
+    </div>
+</body>
+</html>

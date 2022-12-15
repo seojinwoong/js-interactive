@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {background-color: #000; position: relative; width: 100%; height: 100vh; overflow:hidden;}
+        h1 {color: #fff;}
+        .human {position: absolute; left:calc(50% - 150px); width: 300px; top:50px; z-index: 100;}
+
+        
+    </style>
+    <script>
+        let human;
+        let bg;
+
+        let x = 0;
+        let y = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+        let speed = 0.009;
+
+        window.onload = function() {
+            human = document.getElementsByClassName('human')[0];
+            bg = document.getElementsByClassName('bg')[0];
+
+            window.addEventListener('mousemove', mouseFunc, false);
+    
+            function mouseFunc(e) {
+                x = (e.clientX - window.innerWidth / 2);
+                y = (e.clientY - window.innerHeight / 2);
+            }
+            loop();
+        }
+        
+        function loop() {
+            mouseX += (x - mouseX) * speed;
+            mouseY += (y - mouseY) * speed;
+
+            human.style.transform = `translate(${-mouseX/6}px, ${-mouseY/6}px)`;
+            bg.style.transform = `translate(${mouseX/6}px, ${mouseY/6}px)`;
+            
+            window.requestAnimationFrame(loop);
+        }
+    </script>
+</head>
+<body>
+    <img class='human' src="./img/layer-7.png" alt="">
+    <img class='bg' src="./img/layer-1.jpg" alt="">
+</body>
+</html>
