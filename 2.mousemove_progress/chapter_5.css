@@ -1,0 +1,5 @@
+* { margin: 0; padding: 0; box-sizing: border-box; } 
+.bird_intro { position: relative; height: 100vh; margin-bottom: 50px; } 
+.bird_intro img { position: absolute; } 
+.bird_intro .vod { position: absolute; } 
+.bird_intro:nth-child(2n) {display: flex;justify-content: end;}

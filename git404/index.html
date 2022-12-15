@@ -1,19 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../test.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+        }
+
+        .img_wrap {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .imgs1 {
+            top: 22%;
+            left: 30%;
+            z-index: 100;
+        }
+
+        .imgs2 {
+            width: 110%;
+            height: 470px;
+            left: -5%;
+            top: -10px;
+        }
+
+        .imgs3 {
+            top: calc(50% - 115px);
+            left: calc(50% - 94px);
+            z-index: 110;
+        }
+
+        .imgs4 {
+            top: 50%;
+            left: 50%;
+            z-index: 109;
+        }
+
+        .imgs5 {
+            top: 18%;
+            left: 50%;
+            z-index: 108;
+        }
+    </style>
     <script>
         let imgs;
 
         let x = y = mx = my = 0;
-        
-        window.onload = function() {
+
+        window.onload = function () {
             imgs = document.querySelectorAll('.img_wrap img');
-            
+
             document.querySelector('.img_wrap').addEventListener('mousemove', mouseFunc, false);
 
             function mouseFunc(e) {
@@ -26,12 +82,12 @@
         function loop() {
             mx += (x - mx);
             my += (y - my);
-            
-            imgs.forEach(function(img){
+
+            imgs.forEach(function (img) {
                 if (img.dataset.mousedirection === "forward") {
-                    img.style.transform = `translate(${mx/90}px, ${my/90}px)`;        
+                    img.style.transform = `translate(${mx / 90}px, ${my / 90}px)`;
                 } else {
-                    img.style.transform = `translate(${-mx/90}px, ${-my/90}px)`;        
+                    img.style.transform = `translate(${-mx / 90}px, ${-my / 90}px)`;
                 }
             });
 
@@ -39,6 +95,7 @@
         }
     </script>
 </head>
+
 <body>
     <div class="img_wrap">
         <img class="imgs1" data-mousedirection="forward" src="./imgs/1.png" alt="">
@@ -48,4 +105,5 @@
         <img class="imgs5" data-mousedirection="reverse" src="./imgs/5.png" alt="">
     </div>
 </body>
+
 </html>
